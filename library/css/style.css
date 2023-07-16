@@ -157,9 +157,10 @@ body {
 }
 
 .pagination-btn {
-    position: relative;
+    display: inline-flex;
     width: 26px;
     height: 26px;
+    padding: 0;
     background-color: transparent;
     border: none;
     cursor: pointer;
@@ -170,12 +171,9 @@ body {
 }
 
 .circle {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
     width: 16px;
     height: 16px;
+    margin: auto;
     background-color: var(--title-color);
     border-radius: 50%;
 }
