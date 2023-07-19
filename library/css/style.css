@@ -390,7 +390,7 @@ body {
 .menu-item {
     display: flex;
     align-items: center;
-    gap: 60px;
+    gap: 59px;
 }
 
 .menu-item:not(:last-child) {
@@ -413,6 +413,17 @@ body {
 .line {
     width: 100px;
     border-bottom: 1px solid var(--brown-color);
+}
+
+.price {
+    font-family: Forum;
+    font-style: normal;
+    font-size: 20px;
+    line-height: 40px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    color: var(--text-color);
+    text-transform: capitalize;
 }
 
 .food {
