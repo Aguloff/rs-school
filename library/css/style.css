@@ -74,6 +74,10 @@ body {
     color: var(--white-color);
 }
 
+.nav-link:hover {
+    text-shadow: 0 0 10px var(--white-color);
+}
+
 .profile-btn {
     width: 28px;
     height: 28px;
@@ -664,8 +668,11 @@ body {
     color: var(--white-color);
 }
 
-.social-wrapper {
+.social-list {
     display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
     gap: 15px;
 }
 
