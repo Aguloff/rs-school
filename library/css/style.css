@@ -164,9 +164,13 @@ body {
 
 .slider {
     display: flex;
-    flex-wrap: wrap;
     margin: 0 0 33px;
     gap: 25px;
+}
+
+.slider-img {
+    max-width: calc((100% - 50px) / 3);
+    object-fit: cover;
 }
 
 .pagination {
@@ -720,6 +724,45 @@ body {
 
 /* media */
 
+@media (max-width: 1240px) {
+    .favorites-list {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .favorites-item {
+        width: 100%;
+    }
+
+    .descr-book {
+        max-width: 75%;
+    }
+
+    .contacts-wrapper {
+        flex-direction: column;
+        gap: 70px;
+    }
+
+    .map {
+        align-self: center;
+    }
+
+    .library-cards-wrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 21px;
+    }
+
+    .reader-card {
+        align-items: center;
+        max-width: 600px;
+    }
+
+    .reader-card-descr {
+        text-align: center;
+    }
+}
+
 @media (max-width: 1024px) {
     .nav {
         position: absolute;
@@ -807,5 +850,10 @@ body {
 
     .stop-scroll {
         overflow: hidden;
+    }
+
+    .coffee-wrapper {
+        flex-direction: column;
+        gap: 40px;
     }
 }
