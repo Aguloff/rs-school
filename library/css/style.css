@@ -731,6 +731,15 @@ body {
     color: var(--white-color);
 }
 
+.modal {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
 /* media */
 
 @media (max-width: 1240px) {
@@ -773,6 +782,10 @@ body {
 }
 
 @media (max-width: 1024px) {
+    .modal--active {
+        display: block;
+    }
+
     .nav {
         position: absolute;
         top: 0;
@@ -868,6 +881,22 @@ body {
 }
 
 @media (max-width: 768px) {
+    .profile-btn {
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .burger {
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .profile-btn--transform {
+        transform: translateX(13px) translateY(-11px);
+    }
+    
+    .burger--active {
+        transform: translateX(7px) translateY(-11px);
+    }
+
     .slider {
         position: relative;
         justify-content: center;
