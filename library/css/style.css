@@ -173,6 +173,10 @@ body {
     object-fit: cover;
 }
 
+.button-arrow {
+    display: none;
+}
+
 .pagination {
     text-align: center;
     margin-bottom: 5px;
@@ -187,6 +191,11 @@ body {
     border-radius: 50%;
     border: none;
     cursor: pointer;
+}
+
+.pagination-btn:nth-child(2),
+.pagination-btn:nth-child(3) {
+    display: none;
 }
 
 .pagination-btn::before {
@@ -855,5 +864,87 @@ body {
     .coffee-wrapper {
         flex-direction: column;
         gap: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .slider {
+        position: relative;
+        justify-content: center;
+        margin-bottom: 18px;
+    }
+
+    .slider-img {
+        max-width: 100%;
+    }
+
+    .slider-img:nth-child(2) {
+        display: none;
+    }
+    
+    .slider-img:nth-child(3) {
+        display: none;
+    }
+
+    .pagination-btn:nth-child(2),
+    .pagination-btn:nth-child(3) {
+        display: inline-block;
+    }
+
+    .pagination-btn:not(:last-child) {
+        margin-right: 5px;
+    }
+
+    .button-arrow {
+        display: block;
+        position: absolute;
+        top: 51.6%;
+        width: 14px;
+        height: 23px;
+        padding: 0;
+        background-color: transparent;
+        background-image: url(../assets/img/arrow.png);
+        border: none;
+        cursor: pointer;
+    }
+
+    .button-arrow--left {
+        left: 78px;
+        transform: rotate(180deg);
+    }
+
+    .button-arrow--right {
+        right: 78px;
+    }
+
+    .favorites-item {
+        max-width: 550px;
+        min-height: 555px;
+    }
+    
+    .descr-book {
+        max-width: 355px;
+    }
+
+    .contacts-wrapper {
+        gap: 100px;
+    }
+
+    .get-card {
+        margin-bottom: 40px;
+    }
+
+    .reader-card-descr {
+        margin-bottom: 40px;
+    }
+}
+
+@media (max-width: 700px) {
+    .button-arrow--left {
+        left: 40px;
+    }
+
+    .button-arrow--right {
+        right: 40px;
     }
 }
