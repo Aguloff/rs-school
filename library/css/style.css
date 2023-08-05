@@ -897,6 +897,10 @@ body {
         transform: translateX(7px);
     }
 
+    .welcome-container {
+        background-image: linear-gradient(180deg, var(--title-color) 0%, var(--title-color) 0.01%, rgba(18, 18, 21, 0.10) 50%), url('../assets/img/welcome-bg-768.jpg');
+    }
+
     .slider {
         position: relative;
         justify-content: center;
