@@ -890,11 +890,11 @@ body {
     }
 
     .profile-btn--transform {
-        transform: translateX(13px) translateY(-11px);
+        transform: translateX(13px);
     }
     
     .burger--active {
-        transform: translateX(7px) translateY(-11px);
+        transform: translateX(7px);
     }
 
     .slider {
@@ -928,22 +928,22 @@ body {
         display: block;
         position: absolute;
         top: 51.6%;
-        width: 14px;
-        height: 23px;
+        width: 24px;
+        height: 24px;
         padding: 0;
         background-color: transparent;
-        background-image: url(../assets/img/arrow.png);
+        background-image: url(../assets/img/arrow-new.png);
         border: none;
         cursor: pointer;
     }
 
     .button-arrow--left {
-        left: 78px;
+        left: 57px;
         transform: rotate(180deg);
     }
 
     .button-arrow--right {
-        right: 78px;
+        right: 57px;
     }
 
     .favorites-item {
@@ -970,10 +970,10 @@ body {
 
 @media (max-width: 700px) {
     .button-arrow--left {
-        left: 40px;
+        left: 30px;
     }
 
     .button-arrow--right {
-        right: 40px;
+        right: 30px;
     }
 }
