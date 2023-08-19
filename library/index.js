@@ -1,12 +1,10 @@
 const burgerBtn = document.querySelector('.burger');
 const burgerMenu = document.querySelector('.nav');
 const menuLinks = document.querySelectorAll('.nav-link');
-const profileBtn = document.querySelector('.profile-btn');
 const modal = document.querySelector('.modal');
 
 function burger() {
     burgerBtn.classList.toggle('burger--active');
-    profileBtn.classList.toggle('profile-btn--transform');
     burgerMenu.classList.toggle('nav--active');
     document.body.classList.toggle('stop-scroll');
     modal.classList.toggle('modal--active');
