@@ -168,7 +168,7 @@ body {
 
 .slider-list {
     display: flex;
-    margin: 0 0 33px;
+    margin: 0 0 30px;
     padding: 0;
     width: 2350px;
     gap: 25px;
@@ -236,10 +236,11 @@ body {
 
 .season-list {
     display: flex;
+    justify-content: space-between;
+    max-width: 700px;
     margin: 0 0 40px;
     padding: 0;
     list-style: none;
-    gap: 91px;
 }
 
 .custom-radio {
@@ -968,6 +969,11 @@ body {
         top: 0;
         background-color: var(--white-color);
         z-index: 10;
+    }
+
+    .season-list--sticky {
+        padding: 15px 0;
+        box-shadow: 0 10px 10px -10px rgba(0, 0, 0, .3);
     }
 
     .favorites-item {

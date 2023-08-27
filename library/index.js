@@ -93,6 +93,14 @@ tabsBtn.forEach(btn => btn.addEventListener('click', (e) => {
     document.querySelector('.favorites-list--active').classList.add('close');
 }));
 
+//Добавление некоторых стилей для таб навигации во время прилипания
+ window.addEventListener('scroll', () => { 
+    const seasonList = document.querySelector('.season-list');
+    window.scrollY >= 1739 && window.innerWidth <= 768 
+    ? seasonList.classList.add('season-list--sticky') 
+    : seasonList.classList.remove('season-list--sticky');
+});
+
 //Другое
 document.querySelector('.form-btn').addEventListener('click', (e) => e.preventDefault());
 
