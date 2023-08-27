@@ -170,7 +170,7 @@ body {
     display: flex;
     margin: 0 0 33px;
     padding: 0;
-    width: 9999px;
+    width: 2350px;
     gap: 25px;
     list-style: none;
     transition: transform 0.3s ease-in-out;
@@ -219,6 +219,10 @@ body {
 }
 
 /* favorites */
+
+.favorites {
+    position: relative;
+}
 
 .season-selection {
     margin: 0 0 40px;
@@ -281,12 +285,38 @@ body {
 
 .favorites-list {
     display: flex;
+    position: absolute;
     justify-content: space-between;
     flex-wrap: wrap;
     margin: 0;
     padding: 0 40px 0 0;
-    list-style: none;
     gap: 40px;
+    list-style: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-120%);
+    transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
+}
+
+.favorites-list--active {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+}
+
+.close {
+    animation-name: close;
+    animation-duration: 0.5s;
+}
+
+@keyframes close {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0; 
+    }
 }
 
 .favorites-item {
@@ -295,6 +325,7 @@ body {
     flex-direction: column;
     align-items: flex-start;
     width: 550px;
+    min-height: 555px;
     padding: 14px 20px;
     border: 1px solid var(--text-color);
 }
@@ -894,9 +925,6 @@ body {
 
     .slider-wrapper {
         margin: 0 auto;
-        /* position: relative;
-        justify-content: center;
-        margin-bottom: 18px; */
         max-width: 450px;
     }
 
@@ -933,6 +961,13 @@ body {
 
     .button-arrow--right {
         right: 57px;
+    }
+
+    .season-list {
+        position: sticky;
+        top: 0;
+        background-color: var(--white-color);
+        z-index: 10;
     }
 
     .favorites-item {
