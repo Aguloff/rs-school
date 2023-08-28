@@ -101,6 +101,40 @@ tabsBtn.forEach(btn => btn.addEventListener('click', (e) => {
     : seasonList.classList.remove('season-list--sticky');
 });
 
+//Меню профиля
+const profileBtn = document.querySelector('.profile-btn');
+const profileMenu = document.querySelector('.no-auth');
+
+profileBtn.addEventListener('click', () => {
+    if (burgerBtn.classList.contains('burger--active')) burger();
+    profileMenu.classList.toggle('profile-menu--open');
+});
+document.body.addEventListener('click', (e) => {
+    if (e.target.closest('.profile-menu') || e.target === profileBtn) return;
+    profileMenu.classList.remove('profile-menu--open');
+})
+
+//Обработка кнопок регистрации
+const modalRegister = document.querySelector('.dark-modal--register');
+
+document.querySelectorAll('.register').forEach(btn => btn.addEventListener('click', () => {
+    if (profileMenu.classList.contains('profile-menu--open')) {
+        profileMenu.classList.remove('profile-menu--open');
+    }
+    modalRegister.style.display = 'flex';
+}));
+
+document.querySelector('.btn-close').addEventListener('click', function() {
+    this.closest('.dark-modal').style.display = '';
+})
+
+document.querySelector('.modal-content').addEventListener('click', (e) => e._click = true);
+
+modalRegister.addEventListener('click', (e) => {
+    if (e._click) return;
+    modalRegister.style.display = '';
+});
+
 //Другое
 document.querySelector('.form-btn').addEventListener('click', (e) => e.preventDefault());
 

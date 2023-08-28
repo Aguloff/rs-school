@@ -52,6 +52,7 @@ body {
 }
 
 .header-container {
+    /* position: relative; */
     display: flex;
     align-items: center;
     background-color: var(--title-color);
@@ -79,6 +80,10 @@ body {
     text-shadow: 0 0 10px var(--white-color);
 }
 
+.profile-wrapper {
+    position: relative;
+}
+
 .profile-btn {
     width: 28px;
     height: 28px;
@@ -86,6 +91,65 @@ body {
     background-image: url('../assets/img/icon_profile.svg');
     border: none;
     cursor: pointer;
+}
+
+.profile-menu {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    align-items: center;
+    top: 29px;
+    right: 0;
+    width: 80px;
+    height: 115px;
+    padding: 5px;
+    background-color: var(--white-color);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.profile-menu--open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.profile-menu__title {
+    position: relative;
+    margin: 0 0 20px;
+    font-family: Inter;
+    font-style: normal;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 20px;
+    color: var(--text-color);
+}
+
+.profile-menu__title::after {
+    position: absolute;
+    content: '';
+    left: 50%;
+    bottom: -5px;
+    width: 40px;
+    height: 1px;
+    background-color: var(--brown-color);
+    transform: translateX(-50%);
+}
+
+.profile-menu__btn {
+    font-family: Inter;
+    font-style: normal;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: center;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.profile-menu__btn:nth-child(2) {
+    margin-bottom: 10px;
 }
 
 .burger {
@@ -766,6 +830,8 @@ body {
     color: var(--white-color);
 }
 
+/* Модальные окна */
+
 .modal {
     display: none;
     position: absolute;
@@ -773,6 +839,105 @@ body {
     right: 0;
     bottom: 0;
     left: 0;
+}
+
+.dark-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 10;
+}
+
+.modal-content {
+    position: relative;
+    width: 250px;
+    margin: auto;
+    padding: 20px 25px;
+    background-color: var(--white-color);
+}
+
+.modal-content__title {
+    margin: 0 0 20px;
+    font-family: Forum;
+    font-style: normal;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 20px;
+    color: var(--text-color);
+    letter-spacing: 0.4px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.register-form {
+    margin-bottom: 10px;
+}
+
+.modal-label {
+    font-family: Inter;
+    font-style: normal;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 20px;
+    color: var(--text-color);
+    text-align: center;
+    letter-spacing: 0.3px;
+}
+
+.modal-label:nth-child(4) > input {
+    margin-bottom: 20px;
+}
+
+.modal-input {
+    width: 100%;
+    height: 20px;
+    margin: 10px 0;
+    border: 1px solid var(--brown-color);
+}
+
+.question-descr {
+    margin-right: 10px;
+    font-family: Inter;
+    font-style: normal;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: normal;
+    color: var(--text-color);
+    text-shadow: 0px 2px 3px rgba(255, 255, 255, 0.16);
+}
+
+.qustion-btn {
+    padding: 0;
+    font-family: Inter;
+    font-style: normal;
+    font-size: 10px;
+    line-height: normal;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--title-color);
+    text-align: center;
+    text-decoration-line: underline;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 15px;
+    height: 15px;
+    padding: 0;
+    background-color: transparent;
+    background-image: url('../assets/img/close_btn.svg');
+    background-size: cover;
+    border: none;
+    cursor: pointer;
 }
 
 /* media */
@@ -968,7 +1133,7 @@ body {
         position: sticky;
         top: 0;
         background-color: var(--white-color);
-        z-index: 10;
+        z-index: 5;
     }
 
     .season-list--sticky {

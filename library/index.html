@@ -11,6 +11,35 @@
 </head>
 <body>
     <div class="modal"></div>
+    <div class="dark-modal dark-modal--register">
+        <div class="modal-content">
+            <button class="btn-close"></button>
+            <h3 class="modal-content__title">Register</h3>
+            <form action="" class="register-form">
+                <label class="modal-label">
+                    First name
+                    <input class="modal-input" type="text">
+                </label>
+                <label class="modal-label">
+                    Last name
+                    <input class="modal-input" type="text">
+                </label>
+                <label class="modal-label">
+                    E-mail
+                    <input class="modal-input" type="text">
+                </label>
+                <label class="modal-label">
+                    Password
+                    <input class="modal-input" type="text">
+                </label>
+                <button class="login-btn">Sign Up</button>
+            </form>
+            <div class="question-wrapper">
+                <span class="question-descr">Already have an account?</span>
+                <button class="qustion-btn">Login</button>
+            </div>
+        </div>
+    </div>
     <header class="header">
         <div class="container header-container">
             <h1 class="header-title">Brooklyn Public Library</h1>
@@ -33,7 +62,19 @@
                     </li>
                 </ul>
             </nav>
-            <button class="profile-btn"></button>
+            <div class="profile-wrapper">
+                <button class="profile-btn"></button>
+                <div class="profile-menu no-auth">
+                    <h3 class="profile-menu__title">Profile</h3>
+                    <button class="profile-menu__btn log-in">Log In</button>
+                    <button class="profile-menu__btn register">Register</button>
+                </div>
+                <div class="profile-menu with-auth">
+                    <h3 class="profile-menu__title">Profile</h3>
+                    <button class="profile-menu__btn my-profile">Log In</button>
+                    <button class="profile-menu__btn log-out">Register</button>
+                </div>
+            </div>
             <button class="burger">
                 <span class="burger__line"></span>
                 <span class="burger__line"></span>
