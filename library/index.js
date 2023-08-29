@@ -135,6 +135,48 @@ modalRegister.addEventListener('click', (e) => {
     modalRegister.style.display = '';
 });
 
+// Сбор и сохранение данных из полей регистрации
+document.getElementById('reg').addEventListener('click', (e) => {
+    e.preventDefault();
+    const data = {
+        visits: 1,
+        bonuses: 0,
+        books: 0,
+    };
+    const errors = document.querySelector('.errors');
+
+    for (const input of document.querySelector('.register-form')) {
+        errors.textContent = '';
+        if (!input.name) continue;
+        if (!input.value.trim()) {
+            errors.textContent = input.previousElementSibling.textContent + ' must not be empty';
+            return;
+        }
+        if (input.name === 'email') {
+           if (!input.value.match(/^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu)) {
+            errors.textContent = 'Incorrect E-mail';
+            return;
+           }
+        }
+        if (input.name === 'password') {
+            if (input.value.length < 8) {
+                errors.textContent = 'Password must be at least 8 characters long';
+                return;
+            }
+        }
+        data[input.name] = input.value.trim();
+    }
+    const usersData = JSON.parse(localStorage.getItem('users')) || [];
+    
+    if (usersData.some(({email}) => email === data.email)) {
+        errors.textContent = 'this email is already in use';
+    } else {
+        usersData.push(data);
+        localStorage.setItem('users', JSON.stringify(usersData));
+        modalRegister.style.display = '';
+    }
+});
+
 //Другое
 document.querySelector('.form-btn').addEventListener('click', (e) => e.preventDefault());
 

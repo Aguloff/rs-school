@@ -16,23 +16,16 @@
             <button class="btn-close"></button>
             <h3 class="modal-content__title">Register</h3>
             <form action="" class="register-form">
-                <label class="modal-label">
-                    First name
-                    <input class="modal-input" type="text">
-                </label>
-                <label class="modal-label">
-                    Last name
-                    <input class="modal-input" type="text">
-                </label>
-                <label class="modal-label">
-                    E-mail
-                    <input class="modal-input" type="text">
-                </label>
-                <label class="modal-label">
-                    Password
-                    <input class="modal-input" type="text">
-                </label>
-                <button class="login-btn">Sign Up</button>
+                <p class="input-descr">First name</p>
+                <input class="modal-input" type="text" name="firstName">
+                <p class="input-descr">Last name</p>
+                <input class="modal-input" type="text" name="lastName">
+                <p class="input-descr">E-mail</p>
+                <input class="modal-input" type="email" name="email">
+                <p class="input-descr">Password</p>
+                <input class="modal-input" type="password" name="password">
+                <div class="errors"></div>
+                <button class="login-btn" id="reg">Sign Up</button>
             </form>
             <div class="question-wrapper">
                 <span class="question-descr">Already have an account?</span>
@@ -463,7 +456,7 @@
                     <p class="get-card">Get a reader card</p>
                     <p class="reader-card-descr">You will be able to see a reader card after logging into account or you can register a new account</p>
                     <div class="button-wrapper">
-                        <button class="login-btn">Sign Up</button>
+                        <button class="login-btn register">Sign Up</button>
                         <button class="login-btn">Log in</button>
                     </div>
                 </div>
