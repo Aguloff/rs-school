@@ -236,9 +236,10 @@ document.querySelector('.log-out').addEventListener('click', () => {
     location.reload();
 })
 
-//Создание блока с польлзовательской информацией
+//Создание блока с пользовательской информацией
 function createUserInfo() {
     const list = document.createElement('ul');
+    const data = ['Visits', 'Bonuses', 'Books'];
 
     for (let i = 0; i < 3; i++) {
         const li = document.createElement('li');
@@ -251,21 +252,13 @@ function createUserInfo() {
         title.classList.add('user-info__title');
         span.classList.add('user-info__count');
 
+        title.textContent = data[i];
+        img.src = `assets/img/${data[i].toLocaleLowerCase()}.svg`;
+        span.textContent = JSON.parse(localStorage.getItem('users')).find(user => user.cardNumber === localStorage.getItem('auth'))[data[i].toLocaleLowerCase()];
+
         li.append(title, img, span);
         list.append(li);
     }
-
-    list.children[0].children[0].textContent = 'Visits';
-    list.children[0].children[1].src = 'assets/img/visits.svg';
-    list.children[0].children[2].textContent = JSON.parse(localStorage.getItem('users')).find(user => user.cardNumber === localStorage.getItem('auth')).visits;
-
-    list.children[1].children[0].textContent = 'Bonuses';
-    list.children[1].children[1].src = 'assets/img/bonuses.svg';
-    list.children[1].children[2].textContent = JSON.parse(localStorage.getItem('users')).find(user => user.cardNumber === localStorage.getItem('auth')).bonuses;
-
-    list.children[2].children[0].textContent = 'Books';
-    list.children[2].children[1].src = 'assets/img/books.svg';
-    list.children[2].children[2].textContent = JSON.parse(localStorage.getItem('users')).find(user => user.cardNumber === localStorage.getItem('auth')).books;
 
     return list;
 }
