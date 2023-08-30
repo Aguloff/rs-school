@@ -1,3 +1,5 @@
+if (localStorage.getItem('auth')) authorization();
+
 // Бургер
 const burgerBtn = document.querySelector('.burger');
 const burgerMenu = document.querySelector('.nav');
@@ -103,7 +105,16 @@ tabsBtn.forEach(btn => btn.addEventListener('click', (e) => {
 
 //Меню профиля
 const profileBtn = document.querySelector('.profile-btn');
-const profileMenu = document.querySelector('.no-auth');
+let profileMenu; 
+
+if (localStorage.getItem('auth')) {
+    profileMenu = document.querySelector('.with-auth');
+    const title = document.querySelector('.title-number');
+    title.textContent = localStorage.getItem('auth');
+    title.style.fontSize = '12px';
+} else {
+    profileMenu = document.querySelector('.no-auth');
+}
 
 profileBtn.addEventListener('click', () => {
     if (burgerBtn.classList.contains('burger--active')) burger();
@@ -140,8 +151,10 @@ document.getElementById('reg').addEventListener('click', (e) => {
     e.preventDefault();
     const data = {
         visits: 1,
-        bonuses: 0,
+        bonuses: 1240,
         books: 0,
+        rentedBooks: [],
+        cardNumber: null,
     };
     const errors = document.querySelector('.errors');
 
@@ -171,11 +184,91 @@ document.getElementById('reg').addEventListener('click', (e) => {
     if (usersData.some(({email}) => email === data.email)) {
         errors.textContent = 'this email is already in use';
     } else {
+        while (true) {
+            const hexNumber = createCardNumber();
+            if (usersData.some(({cardNumber}) => cardNumber === hexNumber)) continue;
+            else {
+                data.cardNumber = hexNumber;
+                break;
+            }
+        }
         usersData.push(data);
         localStorage.setItem('users', JSON.stringify(usersData));
+        localStorage.setItem('auth', data.cardNumber);
         modalRegister.style.display = '';
+        location.reload();
     }
 });
+
+function createCardNumber() {
+    let num;
+    do {
+      num = Math.floor(Math.random() * 0xfffffffff);
+    } while (num < 0x100000000);
+  
+    return num.toString(16).toUpperCase();
+}
+
+//Авторизация пользователя
+function authorization() {
+    const profile = document.querySelector('.profile-btn');
+    profile.textContent = '';
+    profile.classList.add('profile-btn--auth');
+    const profileInfo = JSON.parse(localStorage.getItem('users')).find(user => user.cardNumber === localStorage.getItem('auth'));
+    profile.textContent = profileInfo.firstName[0].toUpperCase() + profileInfo.lastName[0].toUpperCase();
+    document.querySelector('.reader-card--unauth').style.display = 'none';
+    document.querySelector('.reader-card--auth').style.display = 'flex';
+    document.querySelector('.form-block-descr').textContent = 'Your Library card';
+    const [name, number] = document.querySelectorAll('.input');
+    name.value = profileInfo.firstName[0].toUpperCase() + profileInfo.firstName.slice(1) + ' ' + profileInfo.lastName[0].toUpperCase() + profileInfo.lastName.slice(1);
+    number.value = profileInfo.cardNumber;
+    name.disabled = true;
+    number.disabled = true;
+    document.querySelector('.form-btn').style.display = 'none';
+    const form = document.querySelector('.form');
+    form.style.padding = '17px';
+    form.append(createUserInfo());
+}
+
+//Выход из учетной записи
+document.querySelector('.log-out').addEventListener('click', () => {
+    localStorage.removeItem('auth');
+    location.reload();
+})
+
+//Создание блока с польлзовательской информацией
+function createUserInfo() {
+    const list = document.createElement('ul');
+
+    for (let i = 0; i < 3; i++) {
+        const li = document.createElement('li');
+        const title = document.createElement('h4');
+        const img = document.createElement('img');
+        const span = document.createElement('span');
+    
+        list.classList.add('user-info');
+        li.classList.add('user-info__item');
+        title.classList.add('user-info__title');
+        span.classList.add('user-info__count');
+
+        li.append(title, img, span);
+        list.append(li);
+    }
+
+    list.children[0].children[0].textContent = 'Visits';
+    list.children[0].children[1].src = 'assets/img/visits.svg';
+    list.children[0].children[2].textContent = JSON.parse(localStorage.getItem('users')).find(user => user.cardNumber === localStorage.getItem('auth')).visits;
+
+    list.children[1].children[0].textContent = 'Bonuses';
+    list.children[1].children[1].src = 'assets/img/bonuses.svg';
+    list.children[1].children[2].textContent = JSON.parse(localStorage.getItem('users')).find(user => user.cardNumber === localStorage.getItem('auth')).bonuses;
+
+    list.children[2].children[0].textContent = 'Books';
+    list.children[2].children[1].src = 'assets/img/books.svg';
+    list.children[2].children[2].textContent = JSON.parse(localStorage.getItem('users')).find(user => user.cardNumber === localStorage.getItem('auth')).books;
+
+    return list;
+}
 
 //Другое
 document.querySelector('.form-btn').addEventListener('click', (e) => e.preventDefault());

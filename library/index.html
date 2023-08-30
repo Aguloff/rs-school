@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link href="https://fonts.googleapis.com/css2?family=Forum&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <script defer src="index.js"></script>
 </head>
 <body>
     <div class="modal"></div>
@@ -63,9 +64,9 @@
                     <button class="profile-menu__btn register">Register</button>
                 </div>
                 <div class="profile-menu with-auth">
-                    <h3 class="profile-menu__title">Profile</h3>
-                    <button class="profile-menu__btn my-profile">Log In</button>
-                    <button class="profile-menu__btn log-out">Register</button>
+                    <h3 class="profile-menu__title title-number"></h3>
+                    <button class="profile-menu__btn my-profile">My profile</button>
+                    <button class="profile-menu__btn log-out">Log Out</button>
                 </div>
             </div>
             <button class="burger">
@@ -447,18 +448,40 @@
                         <div class="input-wrapper">
                             <p class="form-name">Brooklyn Public Library</p>
                             <input class="input" type="text" placeholder="Reader's name">
-                            <input class="input" type="number" placeholder="Card number">
+                            <input class="input" type="text" placeholder="Card number">
                         </div>
                         <button class="form-btn">Check the card</button>
+                        <!-- <ul class="user-info">
+                            <li class="user-info__item">
+                                <h4 class="user-info__title">Visits</h4>
+                                <img src="assets/img/visits.svg" alt="icon visits">
+                                <span class="user-info__count user-info__count--visits"></span>
+                            </li>
+                            <li class="user-info__item">
+                                <h4 class="user-info__title">Bonuses</h4>
+                                <img src="assets/img/bonuses.svg" alt="icon bonuses">
+                                <span class="user-info__count user-info__count--bonuses"></span>
+                            </li>
+                            <li class="user-info__item">
+                                <h4 class="user-info__title">Books</h4>
+                                <img src="assets/img/books.svg" alt="icon books">
+                                <span class="user-info__count user-info__count--books"></span>
+                            </li>
+                        </ul> -->
                     </form>
                 </div>
-                <div class="reader-card">
+                <div class="reader-card reader-card--unauth">
                     <p class="get-card">Get a reader card</p>
                     <p class="reader-card-descr">You will be able to see a reader card after logging into account or you can register a new account</p>
                     <div class="button-wrapper">
                         <button class="login-btn register">Sign Up</button>
                         <button class="login-btn">Log in</button>
                     </div>
+                </div>
+                <div class="reader-card reader-card--auth">
+                    <p class="get-card">Visit your profile</p>
+                    <p class="reader-card-descr">With a digital library card you get free access to the Library’s wide array of digital resources including e-books, databases, educational resources, and more.</p>
+                    <button class="login-btn">Profile</button>
                 </div>
             </div>
         </div>
@@ -490,6 +513,5 @@
             </div>
         </div>
     </footer>
-    <script src="index.js"></script>
 </body>
 </html>

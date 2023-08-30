@@ -93,6 +93,19 @@ body {
     cursor: pointer;
 }
 
+.profile-btn--auth {
+    padding: 0;
+    font-family: Inter;
+    font-style: normal;
+    line-height: 20px;
+    font-weight: 400;
+    font-size: 15px;
+    color: var(--brown-color);
+    background-color: var(--white-color);
+    background-image: none;
+    border-radius: 50%;
+}
+
 .profile-menu {
     display: flex;
     position: absolute;
@@ -101,8 +114,8 @@ body {
     top: 29px;
     right: 0;
     width: 80px;
-    height: 115px;
-    padding: 5px;
+    min-height: 115px;
+    padding: 5px 0;
     background-color: var(--white-color);
     opacity: 0;
     visibility: hidden;
@@ -137,6 +150,7 @@ body {
 }
 
 .profile-menu__btn {
+    padding: 0;
     font-family: Inter;
     font-style: normal;
     font-size: 15px;
@@ -642,6 +656,9 @@ body {
 }
 
 .form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 17px 17px 27px;
     border: 3px solid var(--brown-color);
     box-shadow: 0 4px 3px rgba(0, 0, 0, 0.2);
@@ -665,6 +682,10 @@ body {
     color: var(--brown-color);
     border: none;
     border-radius: 10px;
+}
+
+.input:disabled {
+    background-color: var(--white-color);
 }
 
 .input:focus {
@@ -703,6 +724,35 @@ body {
     border-color: var(--brown-color);
 }
 
+.user-info {
+    display: flex;
+    margin: 0;
+    margin-top: -5px;
+    padding: 0;
+    list-style: none;
+    gap: 35px;
+}
+
+.user-info__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user-info__title,
+.user-info__count {
+    margin: 0;
+    font-family: Inter;
+    font-style: normal;
+    font-size: 10px;
+    line-height: 20px;
+    font-weight: 400;
+    color: #000;
+    letter-spacing: 0.2px;
+    text-align: center;
+    text-transform: capitalize;
+}
+
 .library-cards-wrapper {
     display: flex;
     justify-content: space-between;
@@ -713,6 +763,10 @@ body {
     flex-direction: column;
     align-items: flex-end;
     max-width: 456px;
+}
+
+.reader-card--auth {
+    display: none;
 }
 
 .get-card {
