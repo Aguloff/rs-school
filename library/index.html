@@ -30,7 +30,25 @@
             </form>
             <div class="question-wrapper">
                 <span class="question-descr">Already have an account?</span>
-                <button class="qustion-btn">Login</button>
+                <button class="qustion-btn login">Login</button>
+            </div>
+        </div>
+    </div>
+    <div class="dark-modal dark-modal--login">
+        <div class="modal-content">
+            <button class="btn-close"></button>
+            <h3 class="modal-content__title">Login</h3>
+            <form action="" class="login-form">
+                <p class="input-descr">E-mail or readers card</p>
+                <input class="modal-input" type="email" name="email">
+                <p class="input-descr">Password</p>
+                <input class="modal-input" type="password" name="password">
+                <div class="errors errors--login"></div>
+                <button class="login-btn" id="login">Log In</button>
+            </form>
+            <div class="question-wrapper">
+                <span class="question-descr">Don’t have an account?</span>
+                <button class="qustion-btn register">Register</button>
             </div>
         </div>
     </div>
@@ -60,7 +78,7 @@
                 <button class="profile-btn"></button>
                 <div class="profile-menu no-auth">
                     <h3 class="profile-menu__title">Profile</h3>
-                    <button class="profile-menu__btn log-in">Log In</button>
+                    <button class="profile-menu__btn login">Log In</button>
                     <button class="profile-menu__btn register">Register</button>
                 </div>
                 <div class="profile-menu with-auth">
@@ -199,7 +217,7 @@
                     <p class="descr-book">
                         A&nbsp;timely and revelatory new biography of&nbsp;Queen Elizabeth (and her family) exploring how the Windsors have evolved and thrived as&nbsp;the modern world has changed around them.
                     </p>
-                    <button class="buy" disabled>buy</button>
+                    <button class="buy">buy</button>
                     <img class="book-img" src="assets/img/book-4.jpg" alt="book cover" width="200" height="300">
                 </li>
             </ul>
@@ -249,7 +267,7 @@
                     <p class="descr-book">
                         A fascinating story of a teenage girl who marries a man twice her age with the promise to bring her to America. Her marriage is an opportunity for her family to eventually immigrate. For fans of Isabel Allende and Julia Alvarez.
                     </p>
-                    <button class="buy" disabled>Buy</button>
+                    <button class="buy">Buy</button>
                     <img class="book-img" src="assets/img/book-8.jpg" alt="book cover" width="200" height="300">
                 </li>
             </ul>
@@ -447,8 +465,8 @@
                     <form class="form">
                         <div class="input-wrapper">
                             <p class="form-name">Brooklyn Public Library</p>
-                            <input class="input" type="text" placeholder="Reader's name">
-                            <input class="input" type="text" placeholder="Card number">
+                            <input class="input" type="text" placeholder="Reader's name" name="name">
+                            <input class="input" type="text" placeholder="Card number" name="card">
                         </div>
                         <button class="form-btn">Check the card</button>
                     </form>
@@ -458,13 +476,13 @@
                     <p class="reader-card-descr">You will be able to see a reader card after logging into account or you can register a new account</p>
                     <div class="button-wrapper">
                         <button class="login-btn register">Sign Up</button>
-                        <button class="login-btn">Log in</button>
+                        <button class="login-btn login">Log in</button>
                     </div>
                 </div>
                 <div class="reader-card reader-card--auth">
                     <p class="get-card">Visit your profile</p>
                     <p class="reader-card-descr">With a digital library card you get free access to the Library’s wide array of digital resources including e-books, databases, educational resources, and more.</p>
-                    <button class="login-btn">Profile</button>
+                    <button class="login-btn my-profile">Profile</button>
                 </div>
             </div>
         </div>

@@ -927,7 +927,8 @@ body {
     text-transform: uppercase;
 }
 
-.register-form {
+.register-form,
+.login-form {
     margin-bottom: 10px;
 }
 
@@ -955,6 +956,10 @@ body {
 
 .modal-input:nth-child(8) {
     margin-bottom: 20px;
+}
+
+.login-form > .modal-input:nth-child(4) {
+    margin-bottom: 20px; 
 }
 
 .errors {

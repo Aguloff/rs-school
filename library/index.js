@@ -125,26 +125,49 @@ document.body.addEventListener('click', (e) => {
     profileMenu.classList.remove('profile-menu--open');
 })
 
-//Обработка кнопок регистрации
+//Обработка кнопок логина и регистрации
 const modalRegister = document.querySelector('.dark-modal--register');
+const modalLogin = document.querySelector('.dark-modal--login');
 
-document.querySelectorAll('.register').forEach(btn => btn.addEventListener('click', () => {
+function addStyleDisplayToModal(modal) {
     if (profileMenu.classList.contains('profile-menu--open')) {
         profileMenu.classList.remove('profile-menu--open');
     }
-    modalRegister.style.display = 'flex';
+    modal === modalRegister ? modalLogin.style.display = '' : modalRegister.style.display = '';
+    modal.style.display = 'flex';
+}
+
+document.querySelectorAll('.register').forEach(btn => btn.addEventListener('click', () => {
+    addStyleDisplayToModal(modalRegister);
 }));
 
-document.querySelector('.btn-close').addEventListener('click', function() {
-    this.closest('.dark-modal').style.display = '';
-})
+document.querySelectorAll('.login').forEach(btn => btn.addEventListener('click', () => {
+    addStyleDisplayToModal(modalLogin);
+}));
 
-document.querySelector('.modal-content').addEventListener('click', (e) => e._click = true);
+document.querySelectorAll('.btn-close').forEach(btn => btn.addEventListener('click', function() {
+    cleanInputs();
+    this.closest('.dark-modal').style.display = '';
+}));
+
+document.querySelectorAll('.modal-content').forEach(elem => elem.addEventListener('click', (e) => e._click = true));
+
+modalLogin.addEventListener('click', (e) => {
+    if (e._click) return;
+    cleanInputs();
+    modalLogin.style.display = '';
+});
 
 modalRegister.addEventListener('click', (e) => {
     if (e._click) return;
+    cleanInputs();
     modalRegister.style.display = '';
 });
+
+function cleanInputs() {
+    document.querySelectorAll('.modal-input').forEach(input => input.value = '');
+    document.querySelectorAll('.errors').forEach(div => div.textContent = '');
+}
 
 // Сбор и сохранение данных из полей регистрации
 document.getElementById('reg').addEventListener('click', (e) => {
@@ -209,6 +232,43 @@ function createCardNumber() {
     return num.toString(16).toUpperCase();
 }
 
+// Сбор и обработка данных из полей логина
+document.getElementById('login').addEventListener('click', (e) => {
+    e.preventDefault();
+    const errors = document.querySelector('.errors--login');
+    const data = {};
+
+    for (const input of document.querySelector('.login-form')) {
+        errors.textContent = '';
+        if (!input.name) continue;
+        if (!input.value.trim()) {
+            errors.textContent = input.previousElementSibling.textContent + ' must not be empty';
+            return;
+        }
+        data[input.name] = input.value.trim();
+    }
+
+    const profiles = JSON.parse(localStorage.getItem('users')) || [];
+
+    if (!profiles.some(user => user.email.toLowerCase() === data.email.toLowerCase() || user.cardNumber.toLowerCase() === data.email.toLowerCase())) {
+        errors.textContent = 'User is not found';
+        return;
+    };
+
+    const profile = profiles.find(user => user.email.toLowerCase() === data.email.toLowerCase() || user.cardNumber.toLowerCase() === data.email.toLowerCase());
+
+    if (profile.password !== data.password) {
+        errors.textContent = 'Incorrect password';
+        return;
+    }
+
+    profile.visits += 1;
+    localStorage.setItem('auth', profile.cardNumber);
+    localStorage.setItem('users', JSON.stringify(profiles));
+    modalLogin.style.display = '';
+    location.reload();
+})
+
 //Авторизация пользователя
 function authorization() {
     const profile = document.querySelector('.profile-btn');
@@ -216,6 +276,7 @@ function authorization() {
     profile.classList.add('profile-btn--auth');
     const profileInfo = JSON.parse(localStorage.getItem('users')).find(user => user.cardNumber === localStorage.getItem('auth'));
     profile.textContent = profileInfo.firstName[0].toUpperCase() + profileInfo.lastName[0].toUpperCase();
+    profile.title = profileInfo.firstName[0].toUpperCase() + profileInfo.firstName.slice(1) + ' ' + profileInfo.lastName[0].toUpperCase() + profileInfo.lastName.slice(1);
     document.querySelector('.reader-card--unauth').style.display = 'none';
     document.querySelector('.reader-card--auth').style.display = 'flex';
     document.querySelector('.form-block-descr').textContent = 'Your Library card';
@@ -227,7 +288,7 @@ function authorization() {
     document.querySelector('.form-btn').style.display = 'none';
     const form = document.querySelector('.form');
     form.style.padding = '17px';
-    form.append(createUserInfo());
+    form.append(createUserInfoBlock(localStorage.getItem('auth')));
 }
 
 //Выход из учетной записи
@@ -237,7 +298,7 @@ document.querySelector('.log-out').addEventListener('click', () => {
 })
 
 //Создание блока с пользовательской информацией
-function createUserInfo() {
+function createUserInfoBlock(cardNumber) {
     const list = document.createElement('ul');
     const data = ['Visits', 'Bonuses', 'Books'];
 
@@ -254,16 +315,62 @@ function createUserInfo() {
 
         title.textContent = data[i];
         img.src = `assets/img/${data[i].toLocaleLowerCase()}.svg`;
-        span.textContent = JSON.parse(localStorage.getItem('users')).find(user => user.cardNumber === localStorage.getItem('auth'))[data[i].toLocaleLowerCase()];
+        span.textContent = JSON.parse(localStorage.getItem('users')).find(user => user.cardNumber === cardNumber)[data[i].toLocaleLowerCase()];
 
         li.append(title, img, span);
         list.append(li);
     }
-
     return list;
 }
 
-//Другое
-document.querySelector('.form-btn').addEventListener('click', (e) => e.preventDefault());
+//Check the card
+document.querySelector('.form-btn').addEventListener('click', function(e) {
+    e.preventDefault();
+    if (this.previousElementSibling.classList.contains('errors')) {
+        this.previousElementSibling.remove();
+    }
+    const fields = document.querySelectorAll('.input');
+    for (const input of fields) {
+        if (!input.value.trim()) {
+            return createErrorBlock('fields must not be empty', this);
+        }
+    }
+    const profileInfo = JSON.parse(localStorage.getItem('users')).find(user => user.cardNumber === fields[1].value.trim());
+
+    if (!profileInfo) {
+        return createErrorBlock('Incorrect card number', this);
+    }
+
+    const name = fields[0].value.split(' ')[0].trim().toLowerCase();
+
+    if (profileInfo.firstName.toLowerCase() === name || profileInfo.lastName.toLowerCase() === name) {
+        this.style.display = 'none';
+        const form = document.querySelector('.form');
+        form.append(createUserInfoBlock(profileInfo.cardNumber));
+        setTimeout(() => {
+            form.lastElementChild.remove();
+            document.querySelector('.form-btn').style.display = '';
+            fields[0].value = '';
+            fields[1].value = '';
+        }, 10000);
+    } else {
+        return createErrorBlock('Incorrect name', this);
+    }
+});
+
+function createErrorBlock(text, elem) {
+    const div = document.createElement('div');
+    div.classList.add('errors');
+    div.textContent = text;
+    elem.before(div);
+} 
+
+//Обработка кнопок Buy
+const buyBtn = document.querySelectorAll('.buy');
+if (!localStorage.getItem('auth')) {
+    buyBtn.forEach(btn => btn.addEventListener('click', () => {
+        addStyleDisplayToModal(modalLogin);
+    }));
+}
 
 console.log('1. Вёрстка соответствует макету. Ширина экрана 768px +26\n2. Ни на одном из разрешений до 640px включительно не появляется горизонтальная полоса прокрутки. Весь контент страницы при этом сохраняется: не обрезается и не удаляется +12\n3. На ширине экрана 768рх реализовано адаптивное меню +12\n\nРезультат: 50/50');
