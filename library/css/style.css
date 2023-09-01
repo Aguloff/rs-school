@@ -52,7 +52,6 @@ body {
 }
 
 .header-container {
-    /* position: relative; */
     display: flex;
     align-items: center;
     background-color: var(--title-color);
@@ -1008,6 +1007,146 @@ body {
     background-size: cover;
     border: none;
     cursor: pointer;
+}
+
+.profile-content {
+    position: relative;
+    display: flex;
+    margin: auto;
+    min-height: 400px;
+}
+
+.profile-initials {
+    display: flex;
+    min-width: 170px;
+    max-width: 240px;
+    padding: 0 25px;
+    background-color: var(--title-color);
+}
+
+.name-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 100%;
+    margin: auto;
+    gap: 20px;
+}
+
+.initials {
+    width: 80px;
+    height: 80px;
+    padding: 30px 0;
+    color: #BB945F;
+    font-family: Inter;
+    font-style: normal;
+    font-size: 20px;
+    line-height: 20px;
+    font-weight: 400;
+    text-transform: capitalize;
+    text-align: center;
+    background-color: var(--white-color);
+}
+
+.user-full-name {
+    max-width: 100%;
+    padding: 5px 15px;
+    font-family: Inter;
+    font-style: normal;
+    font-size: 20px;
+    line-height: 20px;
+    font-weight: 400;
+    color: #000;
+    text-transform: capitalize;
+    text-align: center;
+    background-color: var(--white-color);
+}
+
+.main-info {
+    display: flex;
+    flex-direction: column;
+    width: 430px;
+    padding: 40px 20px;
+    background-color: var(--white-color);
+}
+
+.main-info__title {
+    margin: 0 0 40px;
+    font-family: Forum;
+    font-style: normal;
+    font-size: 40px;
+    line-height: 20px;
+    font-weight: 400;
+    color: #000;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+
+.rented-books {
+    margin: 20px 0 30px;
+    font-family: Inter;
+    font-style: normal;
+    font-size: 25px;
+    line-height: 20px;
+    font-weight: 400;
+    color: #0C0C0E;
+}
+
+.card-namber-wrapper {
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+    font-family: Inter;
+    font-style: normal;
+    font-size: 20px;
+    line-height: 20px;
+    font-weight: 400;
+    color: #0C0C0E;
+    gap: 15px;
+}
+
+#card-number {
+    color: var(--brown-color);
+}
+
+.list-empty {
+    margin: auto 0;
+}
+
+.copy-btn {
+    width: 15px;
+    height: 13px;
+    padding: 0;
+    background-color: transparent;
+    background-image: url('../assets/img/icon-copy.svg');
+    background-size: cover;
+    border: none;
+    cursor: pointer;
+    transition: background-image .3s ease;
+}
+
+.copy-btn--copied {
+    background-image: url('../assets/img/coped.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.books-list {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 30px;
+    min-height: 64px;
+    max-height: 250px;
+    padding-left: 30px;
+    font-family: Inter;
+    font-style: normal;
+    line-height: 20px;
+    font-size: 20px;
+    color: #000;
+    letter-spacing: 2px;
+    text-transform: capitalize;
+    gap: 10px;
+    overflow-y: auto;
 }
 
 /* media */

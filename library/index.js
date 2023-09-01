@@ -128,12 +128,13 @@ document.body.addEventListener('click', (e) => {
 //Обработка кнопок логина и регистрации
 const modalRegister = document.querySelector('.dark-modal--register');
 const modalLogin = document.querySelector('.dark-modal--login');
+const modalProfile = document.querySelector('.dark-modal--profile');
 
 function addStyleDisplayToModal(modal) {
     if (profileMenu.classList.contains('profile-menu--open')) {
         profileMenu.classList.remove('profile-menu--open');
     }
-    modal === modalRegister ? modalLogin.style.display = '' : modalRegister.style.display = '';
+    document.querySelectorAll('.dark-modal').forEach(block => block.style.display = '');
     modal.style.display = 'flex';
 }
 
@@ -151,18 +152,13 @@ document.querySelectorAll('.btn-close').forEach(btn => btn.addEventListener('cli
 }));
 
 document.querySelectorAll('.modal-content').forEach(elem => elem.addEventListener('click', (e) => e._click = true));
+document.querySelector('.profile-content').addEventListener('click', (e) => e._click = true);
 
-modalLogin.addEventListener('click', (e) => {
+document.querySelectorAll('.dark-modal').forEach(block => block.addEventListener('click', (e) => {
     if (e._click) return;
     cleanInputs();
-    modalLogin.style.display = '';
-});
-
-modalRegister.addEventListener('click', (e) => {
-    if (e._click) return;
-    cleanInputs();
-    modalRegister.style.display = '';
-});
+    block.style.display = '';
+}));
 
 function cleanInputs() {
     document.querySelectorAll('.modal-input').forEach(input => input.value = '');
@@ -298,7 +294,7 @@ document.querySelector('.log-out').addEventListener('click', () => {
 })
 
 //Создание блока с пользовательской информацией
-function createUserInfoBlock(cardNumber) {
+function createUserInfoBlock(cardNumber, modal) {
     const list = document.createElement('ul');
     const data = ['Visits', 'Bonuses', 'Books'];
 
@@ -312,6 +308,11 @@ function createUserInfoBlock(cardNumber) {
         li.classList.add('user-info__item');
         title.classList.add('user-info__title');
         span.classList.add('user-info__count');
+
+        if (modal) {
+            li.style.gap = '10px';
+            title.style.fontSize = '20px';
+        }
 
         title.textContent = data[i];
         img.src = `assets/img/${data[i].toLocaleLowerCase()}.svg`;
@@ -332,7 +333,7 @@ document.querySelector('.form-btn').addEventListener('click', function(e) {
     const fields = document.querySelectorAll('.input');
     for (const input of fields) {
         if (!input.value.trim()) {
-            return createErrorBlock('fields must not be empty', this);
+            return createErrorBlock('Fields must not be empty', this);
         }
     }
     const profileInfo = JSON.parse(localStorage.getItem('users')).find(user => user.cardNumber === fields[1].value.trim());
@@ -371,6 +372,49 @@ if (!localStorage.getItem('auth')) {
     buyBtn.forEach(btn => btn.addEventListener('click', () => {
         addStyleDisplayToModal(modalLogin);
     }));
+}
+
+//Обработка кнопок для появления окна профиля
+document.querySelectorAll('.my-profile').forEach(btn => btn.addEventListener('click', () => {
+    addStyleDisplayToModal(modalProfile);
+    if (document.querySelector('.main-info').children.length < 5) {
+        document.querySelector('.main-info__title').after(createUserInfoBlock(localStorage.getItem('auth'), true));
+        document.querySelector('.rented-books').after(createBooksList());
+    } else {
+        document.querySelector('.main-info > .user-info').replaceChildren(createUserInfoBlock(localStorage.getItem('auth'), true));
+    }
+    const profileInfo = JSON.parse(localStorage.getItem('users')).find(user => user.cardNumber === localStorage.getItem('auth'));
+    document.querySelector('.initials').textContent = profileInfo.firstName[0].toUpperCase() + profileInfo.lastName[0].toUpperCase();
+    document.querySelector('.user-full-name').textContent = profileInfo.firstName[0].toUpperCase() + profileInfo.firstName.slice(1) + ' ' + profileInfo.lastName[0].toUpperCase() + profileInfo.lastName.slice(1);
+    document.getElementById('card-number').textContent = localStorage.getItem('auth');
+    const copyBtn = document.querySelector('.copy-btn');
+    if (copyBtn.classList.contains('copy-btn--copied')) {
+        copyBtn.classList.remove('copy-btn--copied');
+    }
+    copyBtn.addEventListener('click', function() {
+        navigator.clipboard.writeText(localStorage.getItem('auth'));
+        this.classList.add('copy-btn--copied');
+    })
+}));
+
+//Создание списка книг
+function createBooksList() {
+    const books = JSON.parse(localStorage.getItem('users')).find(user => user.cardNumber === localStorage.getItem('auth')).rentedBooks;
+    if (!books.length) {
+        const p = document.createElement('p');
+        p.classList.add('list-empty');
+        p.textContent = 'The list is empty';
+        return p;
+    }
+    const list = document.createElement('ul');
+    list.classList.add('books-list');
+
+    for (const book of books) {
+        const li = document.createElement('li');
+        li.textContent = book;
+        list.append(li);
+    }
+    return list;
 }
 
 console.log('1. Вёрстка соответствует макету. Ширина экрана 768px +26\n2. Ни на одном из разрешений до 640px включительно не появляется горизонтальная полоса прокрутки. Весь контент страницы при этом сохраняется: не обрезается и не удаляется +12\n3. На ширине экрана 768рх реализовано адаптивное меню +12\n\nРезультат: 50/50');
