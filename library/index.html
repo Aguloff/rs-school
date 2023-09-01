@@ -11,6 +11,67 @@
     <script defer src="index.js"></script>
 </head>
 <body>
+    <div class="modal"></div>
+    <div class="dark-modal dark-modal--register">
+        <div class="modal-content">
+            <button class="btn-close"></button>
+            <h3 class="modal-content__title">Register</h3>
+            <form action="" class="register-form">
+                <p class="input-descr">First name</p>
+                <input class="modal-input" type="text" name="firstName">
+                <p class="input-descr">Last name</p>
+                <input class="modal-input" type="text" name="lastName">
+                <p class="input-descr">E-mail</p>
+                <input class="modal-input" type="email" name="email">
+                <p class="input-descr">Password</p>
+                <input class="modal-input" type="password" name="password">
+                <div class="errors"></div>
+                <button class="login-btn" id="reg">Sign Up</button>
+            </form>
+            <div class="question-wrapper">
+                <span class="question-descr">Already have an account?</span>
+                <button class="qustion-btn login">Login</button>
+            </div>
+        </div>
+    </div>
+    <div class="dark-modal dark-modal--login">
+        <div class="modal-content">
+            <button class="btn-close"></button>
+            <h3 class="modal-content__title">Login</h3>
+            <form action="" class="login-form">
+                <p class="input-descr">E-mail or readers card</p>
+                <input class="modal-input" type="email" name="email">
+                <p class="input-descr">Password</p>
+                <input class="modal-input" type="password" name="password">
+                <div class="errors errors--login"></div>
+                <button class="login-btn" id="login">Log In</button>
+            </form>
+            <div class="question-wrapper">
+                <span class="question-descr">Don’t have an account?</span>
+                <button class="qustion-btn register">Register</button>
+            </div>
+        </div>
+    </div>
+    <div class="dark-modal dark-modal--profile">
+        <div class="profile-content">
+                <div class="profile-initials">
+                    <div class="name-wrapper">
+                        <div class="initials">JK</div>
+                        <div class="user-full-name">John Doe</div>
+                    </div>
+                </div>
+                <div class="main-info">
+                    <h2 class="main-info__title">My profile</h2>
+                    <h3 class="rented-books">Rented books</h3>
+                    <div class="card-namber-wrapper">
+                        <span>Card number</span>
+                        <span id="card-number"></span>
+                        <button class="copy-btn" title="Copy card number"></button>
+                    </div>
+                </div>
+                <button class="btn-close"></button>
+        </div>
+    </div>
     <header class="header">
         <div class="container header-container">
             <h1 class="header-title">Brooklyn Public Library</h1>
@@ -473,66 +534,5 @@
             </div>
         </div>
     </footer>
-    <div class="modal"></div>
-    <div class="dark-modal dark-modal--register">
-        <div class="modal-content">
-            <button class="btn-close"></button>
-            <h3 class="modal-content__title">Register</h3>
-            <form action="" class="register-form">
-                <p class="input-descr">First name</p>
-                <input class="modal-input" type="text" name="firstName">
-                <p class="input-descr">Last name</p>
-                <input class="modal-input" type="text" name="lastName">
-                <p class="input-descr">E-mail</p>
-                <input class="modal-input" type="email" name="email">
-                <p class="input-descr">Password</p>
-                <input class="modal-input" type="password" name="password">
-                <div class="errors"></div>
-                <button class="login-btn" id="reg">Sign Up</button>
-            </form>
-            <div class="question-wrapper">
-                <span class="question-descr">Already have an account?</span>
-                <button class="qustion-btn login">Login</button>
-            </div>
-        </div>
-    </div>
-    <div class="dark-modal dark-modal--login">
-        <div class="modal-content">
-            <button class="btn-close"></button>
-            <h3 class="modal-content__title">Login</h3>
-            <form action="" class="login-form">
-                <p class="input-descr">E-mail or readers card</p>
-                <input class="modal-input" type="email" name="email">
-                <p class="input-descr">Password</p>
-                <input class="modal-input" type="password" name="password">
-                <div class="errors errors--login"></div>
-                <button class="login-btn" id="login">Log In</button>
-            </form>
-            <div class="question-wrapper">
-                <span class="question-descr">Don’t have an account?</span>
-                <button class="qustion-btn register">Register</button>
-            </div>
-        </div>
-    </div>
-    <div class="dark-modal dark-modal--profile">
-        <div class="profile-content">
-                <div class="profile-initials">
-                    <div class="name-wrapper">
-                        <div class="initials">JK</div>
-                        <div class="user-full-name">John Doe</div>
-                    </div>
-                </div>
-                <div class="main-info">
-                    <h2 class="main-info__title">My profile</h2>
-                    <h3 class="rented-books">Rented books</h3>
-                    <div class="card-namber-wrapper">
-                        <span>Card number</span>
-                        <span id="card-number"></span>
-                        <button class="copy-btn" title="Copy card number"></button>
-                    </div>
-                </div>
-                <button class="btn-close"></button>
-        </div>
-    </div>
 </body>
 </html>

@@ -1122,13 +1122,14 @@ body {
     background-size: cover;
     border: none;
     cursor: pointer;
-    transition: background-image .3s ease;
+    transition: background-image .3s ease, transform .3s ease;
 }
 
 .copy-btn--copied {
     background-image: url('../assets/img/coped.svg');
     background-repeat: no-repeat;
     background-size: cover;
+    transform: translateY(-2px);
 }
 
 .books-list {
@@ -1144,9 +1145,8 @@ body {
     font-size: 20px;
     color: #000;
     letter-spacing: 2px;
-    text-transform: capitalize;
     gap: 10px;
-    overflow-y: auto;
+    overflow: auto;
 }
 
 /* media */

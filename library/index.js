@@ -271,6 +271,9 @@ function authorization() {
     profile.textContent = '';
     profile.classList.add('profile-btn--auth');
     const profileInfo = JSON.parse(localStorage.getItem('users')).find(user => user.cardNumber === localStorage.getItem('auth'));
+    for (const btn of document.querySelectorAll('.buy')) {
+        disabledButtonBook(btn);
+    }
     profile.textContent = profileInfo.firstName[0].toUpperCase() + profileInfo.lastName[0].toUpperCase();
     profile.title = profileInfo.firstName[0].toUpperCase() + profileInfo.firstName.slice(1) + ' ' + profileInfo.lastName[0].toUpperCase() + profileInfo.lastName.slice(1);
     document.querySelector('.reader-card--unauth').style.display = 'none';
@@ -312,6 +315,10 @@ function createUserInfoBlock(cardNumber, modal) {
         if (modal) {
             li.style.gap = '10px';
             title.style.fontSize = '20px';
+        }
+
+        if (i === 2 && !modal) {
+            span.id = 'count';
         }
 
         title.textContent = data[i];
@@ -372,6 +379,8 @@ if (!localStorage.getItem('auth')) {
     buyBtn.forEach(btn => btn.addEventListener('click', () => {
         addStyleDisplayToModal(modalLogin);
     }));
+} else {
+    buyBtn.forEach(btn => btn.addEventListener('click', buyBook));
 }
 
 //Обработка кнопок для появления окна профиля
@@ -382,6 +391,8 @@ document.querySelectorAll('.my-profile').forEach(btn => btn.addEventListener('cl
         document.querySelector('.rented-books').after(createBooksList());
     } else {
         document.querySelector('.main-info > .user-info').replaceChildren(createUserInfoBlock(localStorage.getItem('auth'), true));
+        document.querySelector('.rented-books').nextElementSibling.remove();
+        document.querySelector('.rented-books').after(createBooksList());
     }
     const profileInfo = JSON.parse(localStorage.getItem('users')).find(user => user.cardNumber === localStorage.getItem('auth'));
     document.querySelector('.initials').textContent = profileInfo.firstName[0].toUpperCase() + profileInfo.lastName[0].toUpperCase();
@@ -403,7 +414,7 @@ function createBooksList() {
     if (!books.length) {
         const p = document.createElement('p');
         p.classList.add('list-empty');
-        p.textContent = 'The list is empty';
+        p.textContent = 'You don\'t have books';
         return p;
     }
     const list = document.createElement('ul');
@@ -415,6 +426,34 @@ function createBooksList() {
         list.append(li);
     }
     return list;
+}
+
+//Покупка книги
+function buyBook() {
+    this.disabled = true;
+    this.textContent = 'Own';
+    this.classList.add('buy--own');
+    const countBooks = document.getElementById('count');
+    countBooks.textContent = +countBooks.textContent + 1;
+    const profiles = JSON.parse(localStorage.getItem('users'));
+    const profileInfo = profiles.find(user => user.cardNumber === localStorage.getItem('auth'));
+    const bookName = this.closest('.favorites-item').children[1].textContent
+    .split('By').map(word => word.trim()).join(', ');
+    profileInfo.books += 1;
+    profileInfo.rentedBooks.push(bookName);
+    localStorage.setItem('users', JSON.stringify(profiles));
+}
+
+//Сохраняем состояние купленных книг при перезагрузке страницы
+function disabledButtonBook(btn) {
+    const bookName = btn.closest('.favorites-item').children[1].textContent
+    .split('By').map(word => word.trim()).join(', ');
+    const books = JSON.parse(localStorage.getItem('users')).find(user => user.cardNumber === localStorage.getItem('auth')).rentedBooks;
+    if (books.includes(bookName)) {
+        btn.disabled = true;
+        btn.textContent = 'Own';
+        btn.classList.add('buy--own');
+    }
 }
 
 console.log('1. Вёрстка соответствует макету. Ширина экрана 768px +26\n2. Ни на одном из разрешений до 640px включительно не появляется горизонтальная полоса прокрутки. Весь контент страницы при этом сохраняется: не обрезается и не удаляется +12\n3. На ширине экрана 768рх реализовано адаптивное меню +12\n\nРезультат: 50/50');
