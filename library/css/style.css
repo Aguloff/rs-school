@@ -970,6 +970,10 @@ body {
     color: red;
 }
 
+.errors--register {
+    margin: 0;
+}
+
 .question-descr {
     margin-right: 7px;
     font-family: Inter;
