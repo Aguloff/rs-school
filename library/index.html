@@ -8,9 +8,104 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link href="https://fonts.googleapis.com/css2?family=Forum&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <script defer src="index.js"></script>
 </head>
 <body>
     <div class="modal"></div>
+    <div class="dark-modal dark-modal--register">
+        <div class="modal-content">
+            <button class="btn-close"></button>
+            <h3 class="modal-content__title">Register</h3>
+            <form action="" class="register-form">
+                <p class="input-descr">First name</p>
+                <input class="modal-input" type="text" name="firstName">
+                <p class="input-descr">Last name</p>
+                <input class="modal-input" type="text" name="lastName">
+                <p class="input-descr">E-mail</p>
+                <input class="modal-input" type="email" name="email">
+                <p class="input-descr">Password</p>
+                <input class="modal-input" type="password" name="password">
+                <div class="errors"></div>
+                <button class="login-btn" id="reg">Sign Up</button>
+            </form>
+            <div class="question-wrapper">
+                <span class="question-descr">Already have an account?</span>
+                <button class="qustion-btn login">Login</button>
+            </div>
+        </div>
+    </div>
+    <div class="dark-modal dark-modal--login">
+        <div class="modal-content">
+            <button class="btn-close"></button>
+            <h3 class="modal-content__title">Login</h3>
+            <form action="" class="login-form">
+                <p class="input-descr">E-mail or readers card</p>
+                <input class="modal-input" type="email" name="email">
+                <p class="input-descr">Password</p>
+                <input class="modal-input" type="password" name="password">
+                <div class="errors errors--login"></div>
+                <button class="login-btn" id="login">Log In</button>
+            </form>
+            <div class="question-wrapper">
+                <span class="question-descr">Don’t have an account?</span>
+                <button class="qustion-btn register">Register</button>
+            </div>
+        </div>
+    </div>
+    <div class="dark-modal dark-modal--profile">
+        <div class="profile-content">
+                <div class="profile-initials">
+                    <div class="name-wrapper">
+                        <div class="initials">JK</div>
+                        <div class="user-full-name">John Doe</div>
+                    </div>
+                </div>
+                <div class="main-info">
+                    <h2 class="main-info__title">My profile</h2>
+                    <h3 class="rented-books">Rented books</h3>
+                    <div class="card-namber-wrapper">
+                        <span>Card number</span>
+                        <span id="card-number"></span>
+                        <button class="copy-btn" title="Copy card number"></button>
+                    </div>
+                </div>
+                <button class="btn-close btn-close--paddings"></button>
+        </div>
+    </div>
+    <div class="dark-modal dark-modal--buy">
+        <div class="buy-content">
+            <div class="buy-content__title">
+                <h3>Buy a library card</h3>
+            </div>
+            <div class="buy-wrapper">
+                <form class="buy-form">
+                    <p class="input-descr">Bank card number</p>
+                    <input type="number" class="modal-input" name="bankCard">
+                    <p class="input-descr">Expiration code</p>
+                    <div class="buy-input-wrapper gap-10">
+                        <input type="text" class="modal-input modal-input--short" maxlength="2" name="code"><input type="text" class="modal-input modal-input--short"  maxlength="2" name="code">
+                    </div>
+                    <p class="input-descr">CVC</p>
+                    <input type="text" class="modal-input modal-input--short" name="cvc"  maxlength="3">
+                    <p class="input-descr">Cardholder name</p>
+                    <input type="text" class="modal-input" name="holderName">
+                    <p class="input-descr">Postal code</p>
+                    <input type="text" class="modal-input" name="postalCode">
+                    <p class="input-descr">City / Town</p>
+                    <input type="text" class="modal-input" name="city">
+                    <div class="errors-buy errors"></div>
+                    <div class="buy-input-wrapper">
+                        <button id="buy">Buy</button>
+                        <span class="price-card">$ 25.00</span>
+                    </div>
+                </form>
+                <div class="buy-descr">
+                    <p class="buy-descr__text">If you are live, work, attend school, or pay property taxes in New York State, you can get a $25 digital library card right now using this online form. Visitors to New York State can also use this form to apply for a temporary card.</p>
+                </div>
+            </div>
+            <button class="btn-close btn-close--white btn-close--paddings"></button>
+        </div>
+    </div>
     <header class="header">
         <div class="container header-container">
             <h1 class="header-title">Brooklyn Public Library</h1>
@@ -33,7 +128,19 @@
                     </li>
                 </ul>
             </nav>
-            <button class="profile-btn"></button>
+            <div class="profile-wrapper">
+                <button class="profile-btn"></button>
+                <div class="profile-menu no-auth">
+                    <h3 class="profile-menu__title">Profile</h3>
+                    <button class="profile-menu__btn login">Log In</button>
+                    <button class="profile-menu__btn register">Register</button>
+                </div>
+                <div class="profile-menu with-auth">
+                    <h3 class="profile-menu__title title-number"></h3>
+                    <button class="profile-menu__btn my-profile">My profile</button>
+                    <button class="profile-menu__btn log-out">Log Out</button>
+                </div>
+            </div>
             <button class="burger">
                 <span class="burger__line"></span>
                 <span class="burger__line"></span>
@@ -56,18 +163,34 @@
             <h2 class="section-title">About</h2>
             <p class="about-descr">The Brooklyn Library is&nbsp;a&nbsp;free workspace, a&nbsp;large number of&nbsp;books and a cozy coffee shop inside</p>
             <div class="slider">
-                <img class="slider-img" src="assets/img/sld-1.jpg" alt="girl in the library" width="450" height="560">
-                <img class="slider-img" src="assets/img/sld-2.jpg" alt="busts" width="450" height="560">
-                <img class="slider-img" src="assets/img/sld-3.jpg" alt="bookshelves" width="450" height="560">
                 <button class="button-arrow button-arrow--left"></button>
+                <div class="slider-wrapper">
+                    <ul class="slider-list">
+                        <li class="slider-item">
+                            <img class="slider-img" src="assets/img/sld-1.jpg" alt="girl in the library" width="450" height="560">
+                        </li>
+                        <li class="slider-item">
+                            <img class="slider-img" src="assets/img/sld-2.jpg" alt="busts" width="450" height="560">
+                        </li>
+                        <li class="slider-item">
+                            <img class="slider-img" src="assets/img/sld-3.jpg" alt="bookshelves" width="450" height="560">
+                        </li>
+                        <li class="slider-item">
+                            <img class="slider-img" src="assets/img/sld-4.jpg" alt="bookshelves" width="450" height="560">
+                        </li>
+                        <li class="slider-item">
+                            <img class="slider-img" src="assets/img/sld-5.jpg" alt="bookshelves" width="450" height="560">
+                        </li>
+                    </ul>
+                </div>
                 <button class="button-arrow button-arrow--right"></button>
-            </div>
-            <div class="pagination">
-                <button class="pagination-btn pagination-btn--active"></button>
-                <button class="pagination-btn"></button>
-                <button class="pagination-btn"></button>
-                <button class="pagination-btn"></button>
-                <button class="pagination-btn"></button>
+                <div class="pagination">
+                    <button class="pagination-btn pagination-btn--active"></button>
+                    <button class="pagination-btn"></button>
+                    <button class="pagination-btn"></button>
+                    <button class="pagination-btn"></button>
+                    <button class="pagination-btn"></button>
+                </div>
             </div>
         </div>
     </section>
@@ -77,32 +200,32 @@
             <h2 class="section-title">Favorites</h2>
             <p class="season-selection">Pick favorites of&nbsp;season</p>
             <ul class="season-list">
-                <li class="season-item">
+                <li class="season-item" data-path="one">
                     <label class="custom-radio">
                         <input type="radio" name="season" checked>
                         <span>Winter</span>
                     </label>
                 </li>
-                <li class="season-item">
+                <li class="season-item" data-path="two">
                     <label class="custom-radio">
                         <input type="radio" name="season">
                         <span>Spring</span>
                     </label>
                 </li>
-                <li class="season-item">
+                <li class="season-item" data-path="three">
                     <label class="custom-radio">
                         <input type="radio" name="season">
                         <span>Summer</span>
                     </label>
                 </li>
-                <li class="season-item">
+                <li class="season-item" data-path="four">
                     <label class="custom-radio">
                         <input type="radio" name="season">
                         <span>Autumn</span>
                     </label>
                 </li>
             </ul>
-            <ul class="favorites-list">
+            <ul class="favorites-list favorites-list--active" data-target="one">
                 <li class="favorites-item">
                     <p class="staff">Staff Picks</p>
                     <h3 class="name-book">
@@ -148,8 +271,158 @@
                     <p class="descr-book">
                         A&nbsp;timely and revelatory new biography of&nbsp;Queen Elizabeth (and her family) exploring how the Windsors have evolved and thrived as&nbsp;the modern world has changed around them.
                     </p>
-                    <button class="buy buy--own" disabled>Own</button>
+                    <button class="buy">buy</button>
                     <img class="book-img" src="assets/img/book-4.jpg" alt="book cover" width="200" height="300">
+                </li>
+            </ul>
+            <ul class="favorites-list" data-target="two">
+                <li class="favorites-item">
+                    <p class="staff">Staff Picks</p>
+                    <h3 class="name-book">
+                        <span class="uppercase">The Body</span>
+                        By Stephen King
+                    </h3>
+                    <p class="descr-book">
+                        Powerful novel that takes you back to a nostalgic time, exploring both the beauty and danger and loss of innocence that is youth.
+                    </p>
+                    <button class="buy">Buy</button>
+                    <img class="book-img" src="assets/img/book-5.jpg" alt="book cover" width="200" height="300">
+                </li>
+                <li class="favorites-item">
+                    <p class="staff">Staff Picks</p>
+                    <h3 class="name-book">
+                        <span class="uppercase">Carry: A Memoir of Survival on Stolen Land</span>
+                        By Toni Jenson
+                    </h3>
+                    <p class="descr-book">
+                        This memoir about the author's relationship with gun violence feels both expansive and intimate, resulting in a lyrical indictment of the way things are.
+                    </p>
+                    <button class="buy">Buy</button>
+                    <img class="book-img" src="assets/img/book-6.jpg" alt="book cover" width="200" height="300">
+                </li>
+                <li class="favorites-item">
+                    <p class="staff">Staff Picks</p>
+                    <h3 class="name-book">
+                        <span class="uppercase">Days of Distraction</span>
+                        By Alexandra Chang
+                    </h3>
+                    <p class="descr-book">
+                        A sardonic view of Silicon Valley culture, a meditation on race, and a journal of displacement and belonging, all in one form-defying package of spare prose.
+                    </p>
+                    <button class="buy">Buy</button>
+                    <img class="book-img" src="assets/img/book-7.jpg" alt="book cover" width="200" height="300">
+                </li>
+                <li class="favorites-item">
+                    <p class="staff">Staff Picks</p>
+                    <h3 class="name-book">
+                        <span class="uppercase">Dominicana</span>
+                        By Angie Cruz
+                    </h3>
+                    <p class="descr-book">
+                        A fascinating story of a teenage girl who marries a man twice her age with the promise to bring her to America. Her marriage is an opportunity for her family to eventually immigrate. For fans of Isabel Allende and Julia Alvarez.
+                    </p>
+                    <button class="buy">Buy</button>
+                    <img class="book-img" src="assets/img/book-8.jpg" alt="book cover" width="200" height="300">
+                </li>
+            </ul>
+            <ul class="favorites-list" data-target="three">
+                <li class="favorites-item">
+                    <p class="staff">Staff Picks</p>
+                    <h3 class="name-book">
+                        <span class="uppercase">Crude: A Memoir</span>
+                        By&nbsp;Pablo Fajardo &amp;&nbsp;Sophie Tardy-Joubert
+                    </h3>
+                    <p class="descr-book">
+                        Drawing and color by Damien Roudeau | This book illustrates the struggles of a group of indigenous Ecuadoreans as they try to sue the ChevronTexaco company for damage their oil fields did to the Amazon and her people
+                    </p>
+                    <button class="buy">Buy</button>
+                    <img class="book-img" src="assets/img/book-9.jpg" alt="book cover" width="200" height="300">
+                </li>
+                <li class="favorites-item">
+                    <p class="staff">Staff Picks</p>
+                    <h3 class="name-book">
+                        <span class="uppercase">Let My People Go Surfing</span>
+                        By Yvon Chouinard
+                    </h3>
+                    <p class="descr-book">
+                        Chouinard—climber, businessman, environmentalist—shares tales of courage and persistence from his experience of founding and leading Patagonia, Inc. Full title: Let My People Go Surfing: The Education of a Reluctant Businessman, Including 10 More Years of Business Unusual.
+                    </p>
+                    <button class="buy">Buy</button>
+                    <img class="book-img" src="assets/img/book-10.jpg" alt="book cover" width="200" height="300">
+                </li>
+                <li class="favorites-item">
+                    <p class="staff">Staff Picks</p>
+                    <h3 class="name-book">
+                        <span class="uppercase">The Octopus Museum: Poems</span>
+                        By Brenda Shaughnessy
+                    </h3>
+                    <p class="descr-book">
+                        This collection of bold and scathingly beautiful feminist poems imagines what comes after our current age of environmental destruction, racism, sexism, and divisive politics.
+                    </p>
+                    <button class="buy">Buy</button>
+                    <img class="book-img" src="assets/img/book-11.jpg" alt="book cover" width="200" height="300">
+                </li>
+                <li class="favorites-item">
+                    <p class="staff">Staff Picks</p>
+                    <h3 class="name-book">
+                        <span class="uppercase">Shark Dialogues: A Novel</span>
+                        By Kiana Davenport
+                    </h3>
+                    <p class="descr-book">
+                        An epic saga of seven generations of one family encompasses the tumultuous history of Hawaii as a Hawaiian woman gathers her four granddaughters together in an erotic tale of villains and dreamers, queens and revolutionaries, lepers and healers.
+                    </p>
+                    <button class="buy">Buy</button>
+                    <img class="book-img" src="assets/img/book-12.jpg" alt="book cover" width="200" height="300">
+                </li>
+            </ul>
+            <ul class="favorites-list" data-target="four">
+                <li class="favorites-item">
+                    <p class="staff">Staff Picks</p>
+                    <h3 class="name-book">
+                        <span class="uppercase">Casual Conversation</span>
+                        By Renia White
+                    </h3>
+                    <p class="descr-book">
+                        White's impressive debut collection takes readers through and beyond the concepts of conversation and the casual - both what we say to each other and what we don't, examining the possibilities around how we construct and communicate identity. 
+                    </p>
+                    <button class="buy">Buy</button>
+                    <img class="book-img" src="assets/img/book-13.jpg" alt="book cover" width="200" height="300">
+                </li>
+                <li class="favorites-item">
+                    <p class="staff">Staff Picks</p>
+                    <h3 class="name-book">
+                        <span class="uppercase">The Great Fire</span>
+                        By Lou Ureneck
+                    </h3>
+                    <p class="descr-book">
+                        The harrowing story of an ordinary American and a principled Naval officer who, horrified by the burning of Smyrna, led an extraordinary rescue effort that saved a quarter of a million refugees from the Armenian Genocide
+                    </p>
+                    <button class="buy">Buy</button>
+                    <img class="book-img" src="assets/img/book-14.jpg" alt="book cover" width="200" height="300">
+                </li>
+                <li class="favorites-item">
+                    <p class="staff">Staff Picks</p>
+                    <h3 class="name-book">
+                        <span class="uppercase">Rickey: The Life and Legend</span>
+                        By Howard Bryant
+                    </h3>
+                    <p class="descr-book">
+                        With the fall rolling around, one can't help but think of baseball's postseason coming up! And what better way to prepare for it than reading the biography of one of the game's all-time greatest performers, the Man of Steal, Rickey Henderson?
+                    </p>
+                    <button class="buy">Buy</button>
+                    <img class="book-img" src="assets/img/book-15.jpg" alt="book cover" width="200" height="300">
+                </li>
+                <li class="favorites-item">
+                    <p class="staff">Staff Picks</p>
+                    <h3 class="name-book">
+                        <span class="uppercase">Slug: And Other Stories</span>
+                        By Megan Milks
+                    </h3>
+                    <p class="descr-book">
+                        Exes Tegan and Sara find themselves chained together by hairballs of codependency. A father and child experience the shared trauma of giving birth to gods from their wounds.
+                    </p>
+                    <button class="buy">Buy</button>
+                    <img class="book-img" src="assets/img/book-16.jpg" alt="book cover" width="200" height="300">
                 </li>
             </ul>
         </div>
@@ -246,19 +519,24 @@
                     <form class="form">
                         <div class="input-wrapper">
                             <p class="form-name">Brooklyn Public Library</p>
-                            <input class="input" type="text" placeholder="Reader's name">
-                            <input class="input" type="number" placeholder="Card number">
+                            <input class="input" type="text" placeholder="Reader's name" name="name">
+                            <input class="input" type="text" placeholder="Card number" name="card">
                         </div>
                         <button class="form-btn">Check the card</button>
                     </form>
                 </div>
-                <div class="reader-card">
+                <div class="reader-card reader-card--unauth">
                     <p class="get-card">Get a reader card</p>
                     <p class="reader-card-descr">You will be able to see a reader card after logging into account or you can register a new account</p>
                     <div class="button-wrapper">
-                        <button class="login-btn">Sign Up</button>
-                        <button class="login-btn">Log in</button>
+                        <button class="login-btn register">Sign Up</button>
+                        <button class="login-btn login">Log in</button>
                     </div>
+                </div>
+                <div class="reader-card reader-card--auth">
+                    <p class="get-card">Visit your profile</p>
+                    <p class="reader-card-descr">With a digital library card you get free access to the Library’s wide array of digital resources including e-books, databases, educational resources, and more.</p>
+                    <button class="login-btn my-profile">Profile</button>
                 </div>
             </div>
         </div>
@@ -273,9 +551,9 @@
                         <a href="https://goo.gl/maps/BUECpo3BuWQ9VjzBA" target="_blank">286 Cadman Plaza, New York, NY&nbsp;11238, United States</a>
                     </address>
                     <ul class="social-list">
-                        <li><a href="#"><img src="assets/img/tw.svg" alt="twitter"></a></li>
-                        <li><a href="#"><img src="assets/img/inst.svg" alt="instagram"></a></li>
-                        <li><a href="#"><img src="assets/img/fb.svg" alt="facebook"></a></li>
+                        <li><a href="#"><img src="assets/img/tw.svg" alt="twitter" width="24" height="24"></a></li>
+                        <li><a href="#"><img src="assets/img/inst.svg" alt="instagram" width="24" height="24"></a></li>
+                        <li><a href="#"><img src="assets/img/fb.svg" alt="facebook" width="24" height="24"></a></li>
                     </ul>
                 </div>
                 <div class="time-wrapper">
@@ -290,6 +568,5 @@
             </div>
         </div>
     </footer>
-    <script src="index.js"></script>
 </body>
 </html>
