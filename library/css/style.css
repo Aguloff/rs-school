@@ -461,7 +461,8 @@ body {
     text-transform: capitalize;
 }
 
-.buy {
+.buy,
+#buy {
     max-width: 75px;
     margin-top: auto;
     padding: 8px 26px;
@@ -480,7 +481,8 @@ body {
     transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 }
 
-.buy:hover {
+.buy:hover,
+#buy:hover {
     background-color: var(--brown-color);
     border-color: var(--brown-color);
 }
@@ -729,7 +731,7 @@ body {
     margin-top: -5px;
     padding: 0;
     list-style: none;
-    gap: 35px;
+    gap: 22px;
 }
 
 .user-info__item {
@@ -909,7 +911,7 @@ body {
     position: relative;
     width: 250px;
     margin: auto;
-    padding: 20px 25px;
+    padding: 19px 25px;
     background-color: var(--white-color);
 }
 
@@ -928,7 +930,7 @@ body {
 
 .register-form,
 .login-form {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .input-descr {
@@ -953,8 +955,8 @@ body {
     border: 1px solid var(--brown-color);
 }
 
-.modal-input:nth-child(8) {
-    margin-bottom: 20px;
+#reg {
+    margin-top: 10px;
 }
 
 .login-form > .modal-input:nth-child(4) {
@@ -969,7 +971,7 @@ body {
 }
 
 .question-descr {
-    margin-right: 10px;
+    margin-right: 7px;
     font-family: Inter;
     font-style: normal;
     font-size: 10px;
@@ -1071,7 +1073,7 @@ body {
 }
 
 .main-info__title {
-    margin: 0 0 40px;
+    margin: 0 0 45px;
     font-family: Forum;
     font-style: normal;
     font-size: 40px;
@@ -1135,7 +1137,7 @@ body {
 .books-list {
     display: flex;
     flex-direction: column;
-    margin: 0 0 30px;
+    margin: 0 0 26px;
     min-height: 64px;
     max-height: 250px;
     padding-left: 30px;
@@ -1147,6 +1149,93 @@ body {
     letter-spacing: 2px;
     gap: 10px;
     overflow: auto;
+}
+
+.buy-content__title {
+    padding: 20px 0;
+    font-family: Forum;
+    font-style: normal;
+    font-size: 34px;
+    line-height: 20px; /* 50% */
+    font-weight: 400;
+    color: #FFF;
+    text-align: center;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    background-color: var(--title-color);
+}
+
+.buy-content__title h3 {
+    margin: 0;
+}
+
+.buy-content  {
+    position: relative;
+    max-width: 640px;
+    min-height: 540px;
+    margin: auto;
+    background-color: var(--white-color);
+}
+
+.buy-wrapper {
+    display: flex;
+    padding: 30px 35px;
+    gap: 40px;
+}
+
+.buy-descr__text {
+    width: 330px;
+    margin: 0;
+    color: #8E8E8E;
+    font-family: Inter;
+    font-style: normal;
+    line-height: 20px;
+    font-weight: 400;
+    font-size: 15px;
+    letter-spacing: 2px;
+}
+
+.buy-input-wrapper {
+    display: flex;
+    align-items: flex-end;
+    margin-top: 10px;
+    gap: 25px;
+}
+
+.price-card {
+    font-family: Inter;
+    font-style: normal;
+    line-height: 20px; /* 100% */
+    font-weight: 700;
+    font-size: 20px;
+    color: #0C0C0E;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.modal-input--short {
+    width: 45px;
+}
+
+.gap-10 {
+    gap: 10px;
+}
+
+.btn-close--white {
+    background-image: url(../assets/img/close_btn_white.svg);
+}
+
+.errors-buy {
+    margin-top: 0;
+}
+
+.btn-close--paddings {
+    top: 25px;
+    right: 25px;
+}
+
+input[name="cvc"] {
+    margin-bottom: 20px;
 }
 
 /* media */

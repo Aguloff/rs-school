@@ -69,7 +69,41 @@
                         <button class="copy-btn" title="Copy card number"></button>
                     </div>
                 </div>
-                <button class="btn-close"></button>
+                <button class="btn-close btn-close--paddings"></button>
+        </div>
+    </div>
+    <div class="dark-modal dark-modal--buy">
+        <div class="buy-content">
+            <div class="buy-content__title">
+                <h3>Buy a library card</h3>
+            </div>
+            <div class="buy-wrapper">
+                <form class="buy-form">
+                    <p class="input-descr">Bank card number</p>
+                    <input type="number" class="modal-input" name="bankCard">
+                    <p class="input-descr">Expiration code</p>
+                    <div class="buy-input-wrapper gap-10">
+                        <input type="text" class="modal-input modal-input--short" maxlength="2" name="code"><input type="text" class="modal-input modal-input--short"  maxlength="2" name="code">
+                    </div>
+                    <p class="input-descr">CVC</p>
+                    <input type="text" class="modal-input modal-input--short" name="cvc"  maxlength="3">
+                    <p class="input-descr">Cardholder name</p>
+                    <input type="text" class="modal-input" name="holderName">
+                    <p class="input-descr">Postal code</p>
+                    <input type="text" class="modal-input" name="postalCode">
+                    <p class="input-descr">City / Town</p>
+                    <input type="text" class="modal-input" name="city">
+                    <div class="errors-buy errors"></div>
+                    <div class="buy-input-wrapper">
+                        <button id="buy">Buy</button>
+                        <span class="price-card">$ 25.00</span>
+                    </div>
+                </form>
+                <div class="buy-descr">
+                    <p class="buy-descr__text">If you are live, work, attend school, or pay property taxes in New York State, you can get a $25 digital library card right now using this online form. Visitors to New York State can also use this form to apply for a temporary card.</p>
+                </div>
+            </div>
+            <button class="btn-close btn-close--white btn-close--paddings"></button>
         </div>
     </div>
     <header class="header">
