@@ -4,8 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>audio player</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    
+    <div class="background">
+        <div class="bg-image"></div>
+    </div>
+
+    <div class="player">
+        <div class="volume-container">
+            <div class="volume-icon"></div>
+            <div class="volume">
+                <div class="volume-percentage"></div>
+            </div>
+        </div>
+
+        <div class="album-img"></div>
+        <div class="song-name">Улица свободы</div>
+        <div class="autor">Тараканы! - Улица свободы</div>
+
+        <div class="time-wripper">
+            <div class="current-time">0:10</div>
+            <div class="time-line">
+                <div class="line"></div>
+            </div>
+            <div class="long-time">2:36</div>
+        </div>
+
+        <div class="controls">
+            <div class="prev"></div>
+            <div class="play">
+                <div class="play-icon"></div>
+            </div>
+            <div class="next"></div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="year">2023</div>
+        <a href="https://github.com/Aguloff" target="_blank">github</a>
+        <a href="https://rs.school/js-stage0/" target="_blank">
+            <img class="logo" src="assets/img/rs_school_js.svg" alt="logo" width="80" height="30">
+        </a>
+    </footer>
 </body>
+<script src="index.js"></script>
 </html>
