@@ -21,6 +21,7 @@ const volumeBtn = player.querySelector('.volume-icon');
 
 let pause = true;
 let audio = new Audio();
+audio.volume = .75;
 let currentIndex = 0;
 let varForSetInterval;
 
@@ -30,7 +31,9 @@ function addSongToPlayer() {
     autor.textContent = `${songs[currentIndex].autor} - ${songs[currentIndex].album}`;
     [backgroundImage, poster].forEach(elem => elem.style.backgroundImage = `url(${songs[currentIndex].image})`);
     progressBar.style.width = '';
-    pause ? audio.volume = .75 : audio.play();
+    if (!pause) {
+        audio.play();
+    }
 }
 
 function getTimeCodeFromNum(num) {
