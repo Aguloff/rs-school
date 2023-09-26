@@ -3,9 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image - Galery</title>
+    <title>Image galery</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo-wrapper">
+                <img class="logo-img" src="image/logo.png" alt="logo" width="30" height="30">
+                <h1 class="header-title">Image galery</h1>
+            </div>
+            <form class="search">
+                <input type="text" class="search-input" placeholder="Search..." autofocus autocomplete="off">
+                <div class="cancel-btn"></div>
+                <button class="search-btn"></button>
+            </form>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="app"></div>
+    </div>
+
+    <footer class="footer"></footer>
+    <script src="index.js"></script>
 </body>
 </html>

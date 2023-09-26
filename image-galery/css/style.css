@@ -1,0 +1,119 @@
+* {
+    box-sizing: border-box;
+}
+
+img {
+    width: 380px;
+    height: 214px;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+    max-width: 1230px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* header */
+
+.header {
+    border-bottom: 5px solid rgb(255, 168, 0);
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-img {
+    width: 30px;
+    height: 30px;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    width: 300px;
+    padding: 5px 15px;
+    border: 1px solid rgb(168, 168, 168);
+    border-radius: 10px;
+    gap: 10px;
+}
+
+.cancel-btn {
+    width: 18px;
+    height: 14px;
+    padding: 0;
+    background-image: url('../image/cancel.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.cancel-btn--active {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity .3s ease-in, visibility .3s ease-in;
+}
+
+.search-input {
+    width: 100%;
+    border: none;
+    outline: none;
+}
+
+.search-btn {
+    width: 25px;
+    height: 20px;
+    padding: 0;
+    background-image: url('../image/search.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+/* app */
+
+.app {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px 0;
+    gap: 20px 0;
+}
+
+.not-found {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%)  translateY(-50%);
+}
+
+/* media */
+
+@media (max-width: 1169px) {
+    .app {
+        justify-content: space-evenly;
+    }
+}
+
+@media (max-width: 789px) {
+    img {
+        width: 100%;
+        object-fit: cover;
+    }
+}
