@@ -5,9 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Snake</title>
     <link rel="shortcut icon" href="assets/img/icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    
+    <div class="wrapper">
+        <div class="game-wrapper">
+            <div class="background">
+                <div class="play-field">
+                    <div class="food"></div>
+                </div>
+            </div>
+            <div class="info">
+                <div class="score">
+                    <p>score</p>
+                    <p id="score-value">0</p>
+                </div>
+                <div class="records">
+                    <p>records</p>
+                    <ul class="records-list"></ul>
+                </div>
+                <div class="sound"></div>
+            </div>
+        </div>
+        <footer class="footer">
+            <span>2023</span>
+            <a href="https://github.com/Aguloff">github</a>
+            <a href="https://rs.school/js-stage0/"><img src="assets/img/rs_school_js.svg" alt="logo" width="35" height="20"></a>
+        </footer>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
