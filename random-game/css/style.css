@@ -74,6 +74,22 @@ body {
     background-color: rgb(0,0,0);
 }
 
+.food {
+    position: relative;
+    border: 1px solid rgba(255,0,0, 0.5);
+}
+
+.food::after {
+    position: absolute;
+    content: '';
+    left: 50%;
+    top: 50%;
+    width: 60%;
+    height: 60%;
+    transform: translateX(-50%) translateY(-50%);
+    background-color: rgba(255,0,0, 0.5);
+}
+
 .play-field {
     display: grid;
     position: absolute;
@@ -99,18 +115,6 @@ body {
     margin: 0;
     text-align: right;
     margin-bottom: 10px;
-}
-
-.sound {
-    width: 30px;
-    height: 30px;
-    background-image: url('../assets/img/sound.png');
-    background-size: cover;
-    cursor: pointer;
-}
-
-.sound:active {
-    transform: scale(.8);
 }
 
 .footer {

@@ -29,6 +29,9 @@ let intervalCounter = 0;
 let press = null;
 let score = 0;
 
+const gameEnd = new Audio('assets/audio/game-over.mp3');
+const sfx = new Audio('assets/audio/sfx.mp3');
+
 function createFood() {
   food.x = Math.floor((Math.random() * 10) + 1);
   food.y = Math.floor((Math.random() * 20) + 1);
@@ -41,25 +44,29 @@ function createFood() {
 
 function gameOver() {
   clearInterval(setItervalId);
-  alert('Game Over! Press OK to replay...');
-  location.reload();
+  gameEnd.play();
+  setTimeout(() => {
+    alert(`Score: ${score} Press OK to replay...`);
+    location.reload();
+  }, 100);
 }
 
 function renderGame() {
   intervalCounter++;
   const foodDiv = document.createElement('div');
 
-  foodDiv.classList.add('cell-active');
+  foodDiv.classList.add('food');
 
+  snake.x += direction.x;
+  snake.y += direction.y;
+  
   if (snake.x === food.x && snake.y === food.y) {
+    sfx.play();
     snakeTail.push([food.x, food.y]);
     score++;
     scoreValue.textContent = score;
     createFood();
   }
-
-  snake.x += direction.x;
-  snake.y += direction.y;
 
   if (snake.x <= 0 || snake.x > 10 || snake.y <= 0 || snake.y > 20) {
     return gameOver();
@@ -79,8 +86,7 @@ function renderGame() {
 
   for (let i = 0; i < snakeTail.length; i++) {
     if (i !== 0 && snakeTail[0][1] === snakeTail[i][1] && snakeTail[0][0] === snakeTail[i][0]) {
-      console.log(snakeTail[i], snakeTail[0]);
-      return gameOver();
+      gameOver();
     }
 
     const snakeItem = document.createElement('div');
