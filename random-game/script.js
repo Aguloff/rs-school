@@ -1,6 +1,7 @@
 const bg = document.querySelector('.background');
 const playField = document.querySelector('.play-field');
 const scoreValue = document.getElementById('score-value');
+const recordList = document.querySelector('.records-list');
 
 for (let i = 0; i < 200; i++) {
   const div = document.createElement('div');
@@ -24,6 +25,7 @@ const food = {
 }
 
 const snakeTail = [];
+const records = JSON.parse(localStorage.getItem('records')) || [];
 let setItervalId;
 let intervalCounter = 0;
 let press = null;
@@ -31,6 +33,13 @@ let score = 0;
 
 const gameEnd = new Audio('assets/audio/game-over.mp3');
 const sfx = new Audio('assets/audio/sfx.mp3');
+
+recordList.innerHTML = '';
+for (let i = 0; i < records.length; i++) {
+  const li = document.createElement('li');
+  li.textContent = records[i];
+  recordList.append(li);
+}
 
 function createFood() {
   food.x = Math.floor((Math.random() * 10) + 1);
@@ -45,6 +54,17 @@ function createFood() {
 function gameOver() {
   clearInterval(setItervalId);
   gameEnd.play();
+
+  if (score) {
+    if(records.length >= 10) {
+      records.shift();
+    }
+    if (!records.length || records[records.length - 1] < score) {
+      records.push(score);
+      localStorage.setItem('records', JSON.stringify(records));
+    }
+  }
+  
   setTimeout(() => {
     alert(`Score: ${score} Press OK to replay...`);
     location.reload();
