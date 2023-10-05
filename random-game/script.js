@@ -25,6 +25,8 @@ const food = {
 
 const snakeTail = [];
 let setItervalId;
+let intervalCounter = 0;
+let press = null;
 let score = 0;
 
 function createFood() {
@@ -44,6 +46,7 @@ function gameOver() {
 }
 
 function renderGame() {
+  intervalCounter++;
   const foodDiv = document.createElement('div');
 
   foodDiv.classList.add('cell-active');
@@ -92,30 +95,62 @@ function renderGame() {
 function turn(event) {
   switch (event.key) {
     case 'ArrowUp':
-      if (direction.y !== 1) {
+      if (direction.y !== 1 && press !== intervalCounter) {
         direction.x = 0;
         direction.y = -1;
+        press = intervalCounter;
+      }
+      if (direction.y !== 1 && press === intervalCounter) {
+        setTimeout(() => {
+          direction.x = 0;
+          direction.y = -1;
+          press = intervalCounter;
+        }, 100);
       }
       break;
 
     case 'ArrowRight':
-      if (direction.x !== -1) {
+      if (direction.x !== -1 && press !== intervalCounter) {
         direction.x = 1;
         direction.y = 0;
+        press = intervalCounter;
+      }
+      if (direction.x !== -1 && press === intervalCounter) {
+        setTimeout(() => {
+          direction.x = 1;
+          direction.y = 0;
+          press = intervalCounter;
+        }, 100);
       }
       break;
 
     case 'ArrowDown':
-      if (direction.y !== -1) {
+      if (direction.y !== -1 && press !== intervalCounter) {
         direction.x = 0;
         direction.y = 1;
+        press = intervalCounter;
+      }
+      if (direction.y !== -1 && press === intervalCounter) {
+        setTimeout(() => {
+          direction.x = 0;
+          direction.y = 1;
+          press = intervalCounter;
+        }, 100);
       }
       break;
 
     case 'ArrowLeft':
-      if (direction.x !== 1) {
+      if (direction.x !== 1 && press !== intervalCounter) {
         direction.x = -1;
         direction.y = 0;
+        press = intervalCounter;
+      }
+      if (direction.x !== 1 && press === intervalCounter) {
+        setTimeout(() => {
+          direction.x = -1;
+          direction.y = -0;
+          press = intervalCounter;
+        }, 100);
       }
       break;
   }
