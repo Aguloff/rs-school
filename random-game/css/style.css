@@ -133,3 +133,13 @@ body {
     text-align: right;
     margin-bottom: 10px;
 }
+
+.help {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: auto;
+    margin-bottom: 30px;
+    margin-right: 14px;
+    gap: 10px;
+}
